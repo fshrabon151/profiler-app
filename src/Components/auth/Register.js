@@ -65,14 +65,18 @@ const Register = () => {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.set('firstName', firstName);
-    formData.set('lastName', lastName);
-    formData.set('phone', phone);
-    formData.set('email', email);
-    formData.set('password', password);
-    formData.set('avatar', avatar);
-    dispatch(register(formData));
+    if (!firstName || !lastName || !email || !password || !phone || !avatar) {
+      alert.error('All Field Required');
+    } else {
+      const formData = new FormData();
+      formData.set('firstName', firstName);
+      formData.set('lastName', lastName);
+      formData.set('phone', phone);
+      formData.set('email', email);
+      formData.set('password', password);
+      formData.set('avatar', avatar);
+      dispatch(register(formData));
+    }
   };
 
   return (

@@ -26,7 +26,6 @@ export const authReducer = (
     user: null,
     loading: true,
     isAuthenticated: false,
-    token: localStorage.getItem('token'),
   },
   action
 ) => {

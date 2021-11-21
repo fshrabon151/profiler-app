@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAlert } from 'react-alert';
 import { useNavigate } from 'react-router-dom';
-import { clearErrors, login } from '../../redux/actions/auth';
+import { clearErrors, login, loadUser } from '../../redux/actions/auth';
 import MetaData from '../layouts/MetaData';
 
 const theme = createTheme();
@@ -32,9 +32,10 @@ export default function Login() {
 
   useEffect(() => {
     if (isAuthenticated) {
+      dispatch(loadUser());
       navigate(`/`);
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, dispatch, navigate]);
   if (error) {
     alert.error(error);
     dispatch(clearErrors());

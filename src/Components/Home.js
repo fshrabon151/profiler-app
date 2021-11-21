@@ -61,7 +61,7 @@ const Home = () => {
                     />
                   </Card>
                 </Grid>
-                <Grid item xs={12} md={6} sx={{ paddingRight: 3 }}>
+                <Grid item xs={12} md={6}>
                   <Card
                     sx={{
                       padding: 2,
@@ -87,7 +87,7 @@ const Home = () => {
                       spacing={2}
                       sx={{ justifyContent: 'center' }}
                     >
-                      <Grid item md={6}>
+                      <Grid item xs={12} md={6}>
                         <Card>
                           <CardActionArea>
                             <CardContent>
@@ -105,7 +105,7 @@ const Home = () => {
                           </CardActionArea>
                         </Card>
                       </Grid>
-                      <Grid item md={6}>
+                      <Grid item xs={12} md={6}>
                         <Card>
                           <CardActionArea>
                             <CardContent>
@@ -123,7 +123,7 @@ const Home = () => {
                           </CardActionArea>
                         </Card>
                       </Grid>
-                      <Grid item md={6}>
+                      <Grid item xs={12} md={6}>
                         <Card>
                           <CardActionArea>
                             <CardContent>
@@ -141,7 +141,7 @@ const Home = () => {
                           </CardActionArea>
                         </Card>
                       </Grid>
-                      <Grid item md={6}>
+                      <Grid item xs={12} md={6}>
                         <Card>
                           <CardActionArea>
                             <CardContent>

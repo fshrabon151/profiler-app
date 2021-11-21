@@ -11,7 +11,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { register, clearErrors } from '../../redux/actions/auth';
+import { register, clearErrors, loadUser } from '../../redux/actions/auth';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useAlert } from 'react-alert';
@@ -39,6 +39,7 @@ const Register = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
+      dispatch(loadUser());
       navigate('/');
     }
   }, [dispatch, isAuthenticated, navigate]);

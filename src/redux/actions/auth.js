@@ -36,3 +36,8 @@ export const register = (userData) => async (dispatch) => {
     dispatch({ type: REGISTER_FAIL, payload: error.response.data.message });
   }
 };
+
+// Clear errors
+export const clearErrors = () => async (dispatch) => {
+  dispatch({ type: CLEAR_ERRORS });
+};

@@ -1,7 +1,12 @@
 import React from 'react';
+import Register from './Components/auth/Register';
 
 const App = () => {
-  return <div>Hello, world!</div>;
+  return (
+    <>
+      <Register />
+    </>
+  );
 };
 
 export default App;

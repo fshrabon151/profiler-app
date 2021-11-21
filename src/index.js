@@ -18,14 +18,12 @@ const options = {
 };
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <AlertProvider template={AlertTemplate} {...options}>
-          <App />
-        </AlertProvider>
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <AlertProvider template={AlertTemplate} {...options}>
+        <App />
+      </AlertProvider>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );

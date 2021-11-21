@@ -22,6 +22,8 @@ import {
   UPDATE_PASSWORD_RESET,
 } from './types';
 
+import setAuthToken from '../../utils/setAuthToken';
+
 // Register user
 export const register = (userData) => async (dispatch) => {
   try {
@@ -34,6 +36,33 @@ export const register = (userData) => async (dispatch) => {
     dispatch({ type: REGISTER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: REGISTER_FAIL, payload: error.response.data.message });
+  }
+};
+
+// Load user
+export const loadUser = () => async (dispatch) => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+  try {
+    dispatch({ type: LOAD_USER_REQUEST });
+
+    const { data } = await axios.get(`/api/v1/me`);
+
+    dispatch({ type: LOAD_USER_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
+  }
+};
+
+// Logout user
+export const logout = () => async (dispatch) => {
+  try {
+    await axios.get(`/api/v1/logout`);
+
+    dispatch({ type: LOGOUT_SUCCESS });
+  } catch (error) {
+    dispatch({ type: LOGOUT_FAIL, payload: error.response.data.message });
   }
 };
 

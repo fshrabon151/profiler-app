@@ -42,7 +42,7 @@ const Home = () => {
                   bgColor: '#e3f2fd',
                 }}
               >
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={5}>
                   <Card
                     sx={{
                       display: 'flex',
@@ -61,7 +61,7 @@ const Home = () => {
                     />
                   </Card>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={7}>
                   <Card
                     sx={{
                       padding: 2,
@@ -91,14 +91,14 @@ const Home = () => {
                         <Card>
                           <CardActionArea>
                             <CardContent>
+                              <Typography variant="body2" color="text.primary">
+                                First Name
+                              </Typography>
                               <Typography
                                 gutterBottom
                                 variant="h5"
                                 component="div"
                               >
-                                First Name
-                              </Typography>
-                              <Typography variant="body2" color="text.primary">
                                 {user && user.firstName}
                               </Typography>
                             </CardContent>
@@ -109,14 +109,14 @@ const Home = () => {
                         <Card>
                           <CardActionArea>
                             <CardContent>
+                              <Typography variant="body2" color="text.primary">
+                                Last Name
+                              </Typography>
                               <Typography
                                 gutterBottom
                                 variant="h5"
                                 component="div"
                               >
-                                Last Name
-                              </Typography>
-                              <Typography variant="body2" color="text.primary">
                                 {user && user.lastName}
                               </Typography>
                             </CardContent>
@@ -127,14 +127,14 @@ const Home = () => {
                         <Card>
                           <CardActionArea>
                             <CardContent>
+                              <Typography variant="body1" color="text.primary">
+                                Email
+                              </Typography>
                               <Typography
                                 gutterBottom
                                 variant="h5"
                                 component="div"
                               >
-                                Email
-                              </Typography>
-                              <Typography variant="body1" color="text.primary">
                                 {user && user.email}
                               </Typography>
                             </CardContent>
@@ -145,14 +145,14 @@ const Home = () => {
                         <Card>
                           <CardActionArea>
                             <CardContent>
+                              <Typography variant="body2" color="text.primary">
+                                Phone
+                              </Typography>
                               <Typography
                                 gutterBottom
                                 variant="h5"
                                 component="div"
                               >
-                                Phone
-                              </Typography>
-                              <Typography variant="body2" color="text.primary">
                                 {user && user.phone}
                               </Typography>
                             </CardContent>

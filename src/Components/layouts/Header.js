@@ -39,7 +39,7 @@ export default function Header() {
                 width: '100%',
               }}
             >
-              Cityscape
+              Cityscape - Profiler App
             </Link>
           </Typography>
           {isAuthenticated && (

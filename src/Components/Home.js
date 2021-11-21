@@ -80,7 +80,7 @@ const Home = () => {
                         textTransform: 'capitalize',
                       }}
                     >
-                      MetaData
+                      Metadata
                     </Typography>
                     <Grid
                       container

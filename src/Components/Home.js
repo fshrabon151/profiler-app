@@ -7,13 +7,12 @@ import { Button, Grid } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 
-import { CardActionArea } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Spinner from './layouts/Spinner';
 import MetaData from './layouts/MetaData';
+import UserMeta from './layouts/UserMeta';
 
 const Home = () => {
   const { user, loading } = useSelector((state) => state.auth);
@@ -87,79 +86,10 @@ const Home = () => {
                       spacing={2}
                       sx={{ justifyContent: 'center' }}
                     >
-                      <Grid item xs={12} md={6}>
-                        <Card>
-                          <CardActionArea>
-                            <CardContent>
-                              <Typography variant="body2" color="text.primary">
-                                First Name
-                              </Typography>
-                              <Typography
-                                gutterBottom
-                                variant="h5"
-                                component="div"
-                              >
-                                {user && user.firstName}
-                              </Typography>
-                            </CardContent>
-                          </CardActionArea>
-                        </Card>
-                      </Grid>
-                      <Grid item xs={12} md={6}>
-                        <Card>
-                          <CardActionArea>
-                            <CardContent>
-                              <Typography variant="body2" color="text.primary">
-                                Last Name
-                              </Typography>
-                              <Typography
-                                gutterBottom
-                                variant="h5"
-                                component="div"
-                              >
-                                {user && user.lastName}
-                              </Typography>
-                            </CardContent>
-                          </CardActionArea>
-                        </Card>
-                      </Grid>
-                      <Grid item xs={12} md={6}>
-                        <Card>
-                          <CardActionArea>
-                            <CardContent>
-                              <Typography variant="body1" color="text.primary">
-                                Email
-                              </Typography>
-                              <Typography
-                                gutterBottom
-                                variant="h5"
-                                component="div"
-                              >
-                                {user && user.email}
-                              </Typography>
-                            </CardContent>
-                          </CardActionArea>
-                        </Card>
-                      </Grid>
-                      <Grid item xs={12} md={6}>
-                        <Card>
-                          <CardActionArea>
-                            <CardContent>
-                              <Typography variant="body2" color="text.primary">
-                                Phone
-                              </Typography>
-                              <Typography
-                                gutterBottom
-                                variant="h5"
-                                component="div"
-                              >
-                                {user && user.phone}
-                              </Typography>
-                            </CardContent>
-                          </CardActionArea>
-                        </Card>
-                      </Grid>
-
+                      <UserMeta title="First Name" text={user.firstName} />
+                      <UserMeta title="Last Name" text={user.lastName} />
+                      <UserMeta title="Email" text={user.email} />
+                      <UserMeta title="Phone" text={user.phone} />
                       <Box
                         sx={{
                           display: 'flex',

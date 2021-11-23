@@ -8,7 +8,7 @@ import Avatar from '@mui/material/Avatar';
 
 import Card from '@mui/material/Card';
 
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Spinner from './layouts/Spinner';
 import MetaData from './layouts/MetaData';
@@ -16,6 +16,7 @@ import UserMeta from './layouts/UserMeta';
 
 const Home = () => {
   const { user, loading } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   return (
     <>
       <CssBaseline />
@@ -102,18 +103,9 @@ const Home = () => {
                           fullWidth
                           size="small"
                           sx={{ mt: 3, mb: 2 }}
+                          onClick={(e) => navigate('/password-update')}
                         >
-                          <Link
-                            to="/password-update"
-                            style={{
-                              textDecoration: 'none',
-                              color: 'white',
-                              display: 'inline-block',
-                              width: '100%',
-                            }}
-                          >
-                            Change Password
-                          </Link>
+                          Change Password
                         </Button>
                         <Box sx={{ width: 25 }}></Box>
 
@@ -121,18 +113,9 @@ const Home = () => {
                           variant="contained"
                           fullWidth
                           sx={{ mt: 3, mb: 2 }}
+                          onClick={(e) => navigate('/profile-update')}
                         >
-                          <Link
-                            to="/profile-update"
-                            style={{
-                              textDecoration: 'none',
-                              color: 'white',
-                              display: 'inline-block',
-                              width: '100%',
-                            }}
-                          >
-                            Update Profile
-                          </Link>
+                          Update Profile
                         </Button>
                       </Box>
                     </Grid>

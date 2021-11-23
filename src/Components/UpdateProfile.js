@@ -10,7 +10,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, loadUser, updateProfile } from '../redux/actions/auth';
@@ -179,18 +179,9 @@ const UpdateProfile = () => {
                 color="secondary"
                 fullWidth
                 sx={{ mt: 3, mb: 2 }}
+                onClick={(e) => navigate('/')}
               >
-                <Link
-                  to="/"
-                  style={{
-                    textDecoration: 'none',
-                    color: 'white',
-                    display: 'inline-block',
-                    width: '100%',
-                  }}
-                >
-                  Go back
-                </Link>
+                Go back
               </Button>
               <Box sx={{ width: 25 }}></Box>
               <Button

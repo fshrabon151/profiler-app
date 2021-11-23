@@ -36,7 +36,6 @@ export default function Header() {
                 textDecoration: 'none',
                 color: 'white',
                 display: 'inline-block',
-                width: '100%',
               }}
             >
               - Profiler App -

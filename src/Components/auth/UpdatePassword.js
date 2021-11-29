@@ -12,32 +12,31 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { useAlert } from 'react-alert';
-import { useDispatch, useSelector } from 'react-redux';
-import { clearErrors, updatePassword } from '../../redux/actions/auth';
+
 import MetaData from '../layouts/MetaData';
+import { useAuth } from '../../context/AuthContext';
 
 const theme = createTheme();
 
 const UpdatePassword = () => {
+  const { error, isUpdated, loading, clearErrors, updatePassword } = useAuth();
   const alert = useAlert();
-  const dispatch = useDispatch();
+
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
 
   const navigate = useNavigate();
-
-  const { error, isUpdated, loading } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (isUpdated) {
       alert.success('Password updated successfully');
       navigate('/');
     }
-  }, [alert, dispatch, isUpdated, navigate]);
+  }, [alert, isUpdated, navigate]);
 
   if (error) {
     alert.error(error);
-    dispatch(clearErrors());
+    clearErrors();
   }
 
   const submitHandler = (e) => {
@@ -45,7 +44,7 @@ const UpdatePassword = () => {
     const formData = new FormData();
     formData.set('oldPassword', oldPassword);
     formData.set('password', newPassword);
-    dispatch(updatePassword(formData));
+    updatePassword(formData);
   };
 
   return (

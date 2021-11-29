@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Header from './Components/layouts/Header';
@@ -8,22 +8,17 @@ import Home from './Components/Home';
 import UpdateProfile from './Components/UpdateProfile';
 import UpdatePassword from './Components/auth/UpdatePassword';
 
-import store from './redux/store';
-import { loadUser } from './redux/actions/auth';
 import ProtectedRoute from './Components/routes/ProtectedRoute';
 import setAuthToken from './utils/setAuthToken';
+import GlobalProvider from './context/GlobalProvider';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
 const App = () => {
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
-
   return (
-    <div>
+    <GlobalProvider>
       <Header />
       <Routes>
         <Route path="*" element={<Navigate to="/" />} />
@@ -54,7 +49,7 @@ const App = () => {
           }
         />
       </Routes>
-    </div>
+    </GlobalProvider>
   );
 };
 

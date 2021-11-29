@@ -12,13 +12,22 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { useAlert } from 'react-alert';
-import { useDispatch, useSelector } from 'react-redux';
-import { clearErrors, loadUser, updateProfile } from '../redux/actions/auth';
+
 import MetaData from './layouts/MetaData';
+import { useAuth } from '../context/AuthContext';
 
 const theme = createTheme();
 
 const UpdateProfile = () => {
+  const {
+    clearErrors,
+    loadUser,
+    updateProfile,
+    error,
+    isUpdated,
+    loading,
+    user,
+  } = useAuth();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
@@ -27,12 +36,8 @@ const UpdateProfile = () => {
   const [avatar, setAvatar] = useState('');
   const [avatarPreview, setAvatarPreview] = useState('/broken-image.jpg');
   const alert = useAlert();
-  const dispatch = useDispatch();
 
   const navigate = useNavigate();
-
-  const { user } = useSelector((state) => state.auth);
-  const { error, isUpdated, loading } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (user) {
@@ -46,12 +51,12 @@ const UpdateProfile = () => {
     if (isUpdated) {
       alert.success('User updated successfully');
       navigate('/');
-      dispatch(loadUser());
+      loadUser();
     }
-  }, [alert, dispatch, isUpdated, navigate, user]);
+  }, [alert, loadUser, isUpdated, navigate, user]);
   if (error) {
     alert.error(error);
-    dispatch(clearErrors());
+    clearErrors();
   }
 
   const submitHandler = (e) => {
@@ -62,7 +67,7 @@ const UpdateProfile = () => {
     formData.set('phone', phone);
     formData.set('email', email);
     formData.set('avatar', avatar);
-    dispatch(updateProfile(formData));
+    updateProfile(formData);
   };
 
   const onChange = (e) => {

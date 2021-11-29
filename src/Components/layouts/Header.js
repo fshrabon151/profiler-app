@@ -6,16 +6,17 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { Link } from 'react-router-dom';
-import { logout } from '../../redux/actions/auth';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { useAlert } from 'react-alert';
+import { useAuth } from '../../context/AuthContext';
 
 export default function Header() {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated, logout } = useAuth();
+
   const alert = useAlert();
-  const dispatch = useDispatch();
+
   const logoutHandler = () => {
-    dispatch(logout());
+    logout();
     alert.success('Logged out successfully.');
   };
   return (

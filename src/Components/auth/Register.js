@@ -11,17 +11,19 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { register, clearErrors, loadUser } from '../../redux/actions/auth';
-import { useSelector, useDispatch } from 'react-redux';
+
 import { useNavigate } from 'react-router-dom';
 import { useAlert } from 'react-alert';
 import MetaData from '../layouts/MetaData';
+import { useAuth } from '../../context/AuthContext';
 
 const theme = createTheme();
 
 const Register = () => {
+  const { isAuthenticated, loading, error, loadUser, clearErrors, register } =
+    useAuth();
   const alert = useAlert();
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const [user, setUser] = useState({
     firstName: '',
@@ -33,20 +35,17 @@ const Register = () => {
   const { firstName, lastName, phone, email, password } = user;
   const [avatar, setAvatar] = useState('');
   const [avatarPreview, setAvatarPreview] = useState('/broken-image.jpg');
-  const { isAuthenticated, loading, error } = useSelector(
-    (state) => state.auth
-  );
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(loadUser());
+      loadUser();
       navigate('/');
     }
-  }, [dispatch, isAuthenticated, navigate]);
+  }, [loadUser, isAuthenticated, navigate]);
 
   if (error) {
     alert.error(error);
-    dispatch(clearErrors());
+    clearErrors();
   }
 
   const onChange = (e) => {
@@ -76,7 +75,7 @@ const Register = () => {
       formData.set('email', email);
       formData.set('password', password);
       formData.set('avatar', avatar);
-      dispatch(register(formData));
+      register(formData);
     }
   };
 

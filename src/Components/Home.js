@@ -9,13 +9,16 @@ import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+
 import Spinner from './layouts/Spinner';
 import MetaData from './layouts/MetaData';
 import UserMeta from './layouts/UserMeta';
 
+import { useAuth } from '../context/AuthContext';
+
 const Home = () => {
-  const { user, loading } = useSelector((state) => state.auth);
+  const { user, loading } = useAuth();
+
   const navigate = useNavigate();
   return (
     <>

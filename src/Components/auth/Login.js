@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
+
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
@@ -11,45 +11,42 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { useDispatch, useSelector } from 'react-redux';
 import { useAlert } from 'react-alert';
 import { useNavigate } from 'react-router-dom';
-import { clearErrors, login, loadUser } from '../../redux/actions/auth';
+
 import MetaData from '../layouts/MetaData';
+import { useAuth } from '../../context/AuthContext';
 
 const theme = createTheme();
 
 export default function Login() {
+  const { error, isAuthenticated, loading, loadUser, clearErrors, login } =
+    useAuth();
   const alert = useAlert();
-  const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const { isAuthenticated, loading, error } = useSelector(
-    (state) => state.auth
-  );
-
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(loadUser());
+      loadUser();
       navigate(`/`);
     }
-  }, [isAuthenticated, dispatch, navigate]);
+  }, [isAuthenticated, loadUser, navigate]);
   if (error) {
     alert.error(error);
-    dispatch(clearErrors());
+    clearErrors();
   }
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+    login(email, password);
   };
   return (
     <ThemeProvider theme={theme}>
       <MetaData title="Login" />
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
         <Box
           sx={{
             my: 8,
